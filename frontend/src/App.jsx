@@ -1,4 +1,5 @@
 import React from 'react'
+import { User, Lock } from 'lucide-react';
 
 // Wrapper to wrap the whole page, probably
 const AuthLayout = ({ children, title, subtitle }) => {
@@ -26,11 +27,52 @@ const AuthLayout = ({ children, title, subtitle }) => {
   )
 }
 
+const InputField = ({ label, type, placeholder, icon }) => {
+  return (
+    <div className="mb-4">
+      {/* Label Text */}
+      <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+        {label}
+      </label>
+
+      {/* The Input Container */}
+      <div className='relative'>
+
+        {/* Icon */}
+        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400'>
+          {icon}
+        </div>
+
+        {/* Input Field */}
+        <input
+          type={type}
+          className='block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 bg-gray-50 focus:bg-white sm:text-sm'
+          placeholder={placeholder}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function App(){
   return(
     // testing layout
     <AuthLayout title="Welcome Back" subtitle="Monitor your growth">
-      <p className="text-center text-gray-400">Form inputs will go here...</p>
+      {/* testing input fields */}
+      <InputField
+        label="Email Address"
+        type="email"
+        placeholder="john@gmail.com"
+        icon={<User size="18" />}
+      />
+
+      {/* NEW: Password Field */}
+      <InputField 
+        label="Password" 
+        type="password" 
+        placeholder="••••••••" 
+        icon={<Lock size={18} />} 
+      />
     </AuthLayout>
   )
 }
